@@ -25,10 +25,13 @@ pip3 install -r requirements.txt
     ```
 
 ## Usage
-To start using the software just run:
+- To start using the software just run:
 ```commandline
 python3 img2txt.py
 ```
+- Now take screenshot of any text and copy to clipboard
+- Click on Grab
+- Now the image in the clipboard is converted to text
 
 ## GUI
 ![forthebadge made-with-python](gui-screenshot.png)
