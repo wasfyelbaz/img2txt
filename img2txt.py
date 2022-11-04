@@ -7,7 +7,7 @@ from PIL import Image
 from PIL import ImageGrab
 
 from pytesseract import pytesseract
-import clipboard
+
 import pyperclip3 as pc
 
 from sys import platform
@@ -72,10 +72,15 @@ class Main:
         print("="*40)
 
         if self.get_image_from_clipboard():
-            text = self.get_text_from_image()
-            clipboard.copy(text)
+            try:
+                text = self.get_text_from_image()
+            except Exception as e:
+                text = ""
+                print("Error: Please, install pytesseract the right way as stated in the README file")
+
+            pc.copy(text)
             print(text)
-        
+
         print("="*40)
         print()
 
