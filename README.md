@@ -31,7 +31,6 @@ python3 img2txt.py
 ```
 
 ## GUI
-[Img]()
 ![forthebadge made-with-python](gui-screenshot.png)
 
 ## Idea
