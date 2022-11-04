@@ -8,6 +8,9 @@ from PIL import ImageGrab
 
 from pytesseract import pytesseract
 import clipboard
+import pyperclip3 as pc
+
+from sys import platform
 
 
 class Main:
@@ -15,6 +18,8 @@ class Main:
     image_path = os.path.join(tempfile.gettempdir(), "img2txt.png")
 
     def __init__(self) -> None:
+
+        self.operating_system = self.detect_os()
 
         self.root = Tk()
         self.root.overrideredirect(1)
@@ -35,12 +40,23 @@ class Main:
 
         self.root.mainloop()
 
+    def detect_os(self):
+        return platform
+
     def get_image_from_clipboard(self):
         """save image from clipboard"""
         try:
-            img = ImageGrab.grabclipboard()
-            img.save(self.image_path, 'PNG')
+            if self.operating_system == "linux" or self.operating_system == "linux2":
+                # linux
+                os.system(f"xclip -selection clipboard -target image/png -out > {self.image_path}") # apt-get install xclip
+            else:
+                # windows / mac os x
+                img = ImageGrab.grabclipboard()
+                img.save(self.image_path, 'PNG')
             return True
+        except NotImplementedError:
+            print("Error: your system is not supported")
+            exit()
         except AttributeError:
             print("Error: No image found in the clip board")
             return False
