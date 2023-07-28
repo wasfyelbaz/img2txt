@@ -75,6 +75,7 @@ class Main:
             try:
                 text = self.get_text_from_image()
             except Exception as e:
+                print(e)
                 text = ""
                 print("Error: Please, install pytesseract the right way as stated in the README file")
 
